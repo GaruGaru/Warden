@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  warden:
+      image: garugaru/warden
+      build:
+        context: ../
+        dockerfile: docker/Dockerfile.dev
+      ports:
+        - 8080:8080
+      environment:
+        - PORT=8080
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"

@@ -1,0 +1,12 @@
+FROM golang:1.10 AS build
+
+RUN mkdir -p $GOPATH/src/github.com/GaruGaru/Warden
+ADD . $GOPATH/src/github.com/GaruGaru/Warden
+WORKDIR $GOPATH/src/github.com/GaruGaru/Warden
+RUN go get -u github.com/golang/dep/cmd/dep
+RUN dep ensure -vendor-only
+
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o warden
+RUN cp warden /
+
+ENTRYPOINT ./warden
