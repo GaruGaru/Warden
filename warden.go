@@ -4,8 +4,7 @@ import (
 	"github.com/x-cray/logrus-prefixed-formatter"
 	log "github.com/sirupsen/logrus"
 	"github.com/GaruGaru/Warden/agent"
-	"fmt"
-	"encoding/json"
+	"github.com/GaruGaru/Warden/metrics"
 )
 
 var (
@@ -25,12 +24,10 @@ func main() {
 
 	info, err := fetcher.Fetch()
 
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 
-	jsn, _ := json.Marshal(info)
-
-	fmt.Println(string(jsn))
+	metrics.MetricsLogger{}.Send(info)
 
 }
