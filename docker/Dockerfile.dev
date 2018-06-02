@@ -6,6 +6,17 @@ WORKDIR $GOPATH/src/github.com/GaruGaru/Warden
 RUN go get -u github.com/golang/dep/cmd/dep
 RUN dep ensure -vendor-only
 
+ENV HOST_PROC=/host/proc
+ENV HOST_SYS=/host/sys
+ENV HOST_ETC=/host/etc
+ENV HOST_VAR=/host/var
+
+RUN mkdir -p /host/proc
+RUN mkdir -p /host/sys
+RUN mkdir -p /host/etc
+RUN mkdir -p /host/var
+
+
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o warden
 RUN cp warden /
 

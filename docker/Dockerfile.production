@@ -19,5 +19,17 @@ RUN rm -rf /var/cache/apk/*
 
 COPY --from=build /warden /home/
 
+
+ENV HOST_PROC=/host/proc
+ENV HOST_SYS=/host/sys
+ENV HOST_ETC=/host/etc
+ENV HOST_VAR=/host/var
+
+RUN mkdir -p /host/proc
+RUN mkdir -p /host/sys
+RUN mkdir -p /host/etc
+RUN mkdir -p /host/var
+
+
 WORKDIR /home
 ENTRYPOINT ./warden

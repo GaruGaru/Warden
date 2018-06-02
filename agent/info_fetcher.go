@@ -6,6 +6,10 @@ import (
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/disk"
 	"time"
+	"io/ioutil"
+	"os"
+	"path"
+	"strings"
 )
 
 type HostInfoFetcher interface {
@@ -36,7 +40,7 @@ func (fetcher DefaultHostInfoFetcher) fetchHostInfo() (HostInfo, error) {
 	}
 
 	return HostInfo{
-		Hostname:        info.Hostname,
+		Hostname:        getHostname(),
 		UpTime:          info.Uptime,
 		OS:              info.OS,
 		Platform:        info.Platform,
@@ -133,4 +137,25 @@ func (fetcher DefaultHostInfoFetcher) fetchDisksInfo() ([]DiskInfo, error) {
 	}
 
 	return diskStats, nil
+}
+
+func env(key string, fallback string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		return fallback
+	}
+	return val
+}
+
+func getHostname() string {
+	etc := env("HOST_ETC", "/etc")
+	hostname, err := ioutil.ReadFile(path.Join(etc, "hostname"))
+	if err != nil || len(hostname) == 0 {
+		hostname, err := os.Hostname()
+		if err != nil {
+			return ""
+		}
+		return hostname
+	}
+	return strings.TrimRight(string(hostname), "\n")
 }

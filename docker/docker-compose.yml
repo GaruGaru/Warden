@@ -7,4 +7,7 @@ services:
         context: ../
         dockerfile: docker/Dockerfile.dev
       volumes:
-        - "/var/run/docker.sock:/var/run/docker.sock"
+        - "/proc:/host/proc"
+        - "/sys:/host/sys"
+        - "/var:/host/var"
+        - "/etc:/host/etc"
