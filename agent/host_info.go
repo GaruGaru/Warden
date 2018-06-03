@@ -20,7 +20,7 @@ type CpuInfo struct {
 	UsagePercentTotal float64   `json:"usage_percent_total"`
 }
 
-type Memory struct {
+type MemoryInfo struct {
 	Total       uint64  `json:"total"`
 	Used        uint64  `json:"used"`
 	Free        uint64  `json:"free"`
@@ -41,8 +41,8 @@ type DiskInfo struct {
 }
 
 type AgentInfo struct {
-	Host  HostInfo   `json:"host"`
-	Cpus  []CpuInfo  `json:"cpus_info"`
-	Memory           `json:"memory"`
-	Disks []DiskInfo `json:"disks"`
+	Host     HostInfo   `json:"host"`
+	CpusInfo []CpuInfo  `json:"cpus_info"`
+	MemoryInfo          `json:"memory"`
+	Disks    []DiskInfo `json:"disks"`
 }

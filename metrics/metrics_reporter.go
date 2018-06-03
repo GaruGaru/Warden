@@ -6,14 +6,14 @@ import (
 	"encoding/json"
 )
 
-type MetricsSender interface {
+type MetricsReporter interface {
 	Send(info agent.AgentInfo) error
 }
 
-type MetricsLogger struct {
+type MetricsReporterLogger struct {
 }
 
-func (l MetricsLogger) Send(info agent.AgentInfo) error {
+func (l MetricsReporterLogger) Send(info agent.AgentInfo) error {
 	infoJson, err := json.Marshal(info)
 
 	if err != nil {

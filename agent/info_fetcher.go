@@ -25,10 +25,10 @@ func (fetcher DefaultHostInfoFetcher) Fetch() (AgentInfo, error) {
 	memInfo, _ := fetcher.fetchMemoryInfo()
 	disksInfo, _ := fetcher.fetchDisksInfo()
 	return AgentInfo{
-		Host:   hostInfo,
-		Cpus:   cpuInfo,
-		Memory: memInfo,
-		Disks:  disksInfo,
+		Host:       hostInfo,
+		CpusInfo:   cpuInfo,
+		MemoryInfo: memInfo,
+		Disks:      disksInfo,
 	}, nil
 }
 
@@ -88,15 +88,15 @@ func (fetcher DefaultHostInfoFetcher) fetchCpuInfo() ([]CpuInfo, error) {
 	return perCpuInfo, nil
 }
 
-func (fetcher DefaultHostInfoFetcher) fetchMemoryInfo() (Memory, error) {
+func (fetcher DefaultHostInfoFetcher) fetchMemoryInfo() (MemoryInfo, error) {
 
 	stats, err := mem.VirtualMemory()
 
 	if err != nil {
-		return Memory{}, err
+		return MemoryInfo{}, err
 	}
 
-	return Memory{
+	return MemoryInfo{
 		Total:       stats.Total,
 		Used:        stats.Used,
 		Free:        stats.Free,
