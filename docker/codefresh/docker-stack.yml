@@ -3,8 +3,7 @@ services:
 
   agent:
       image: garugaru/warden
-      entrypoint: warden
-      command: agent
+      entrypoint: warden agent
       environment:
         REPORTER: statsd
         STATSD_HOST: ${STATSD_HOST}
