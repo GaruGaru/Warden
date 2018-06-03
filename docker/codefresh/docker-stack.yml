@@ -5,6 +5,7 @@ services:
       image: garugaru/warden
       command: agent
       environment:
+        REPORTER: statsd
         STATSD_HOST: ${STATSD_HOST}
       networks:
         - statsd

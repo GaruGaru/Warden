@@ -22,7 +22,7 @@ steps:
     type: build
     image_name: garugaru/warden
     working_directory: ${{main_clone}}
-    dockerfile: docker/Dockerfile.prod
+    dockerfile: docker/Dockerfile.production
     tag: '${{CF_SHORT_REVISION}}'
 
   push_image:
