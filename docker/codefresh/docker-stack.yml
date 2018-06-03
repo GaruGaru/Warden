@@ -14,7 +14,10 @@ services:
         - "/sys:/host/sys"
         - "/var:/host/var"
         - "/etc:/host/etc"
-
+      deploy:
+        mode: global
+        restart_policy:
+          condition: on-failure
 networks:
   statsd:
     external: true

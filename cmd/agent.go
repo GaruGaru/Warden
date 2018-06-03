@@ -8,6 +8,7 @@ import (
 	"github.com/GaruGaru/Warden/metrics"
 	"fmt"
 	"github.com/GaruGaru/Warden/agent"
+	"time"
 )
 
 var (
@@ -34,22 +35,26 @@ var agentCmd = &cobra.Command{
 
 		reporter, err := createReporter()
 
-		if err != nil{
+		if err != nil {
 			log.Error("error creating reporter: ", err)
 			return
 		}
 
 		hostInfoFetcher := agent.DefaultHostInfoFetcher{}
 
-		info, err := hostInfoFetcher.Fetch()
+		for ; ; {
 
-		if err != nil {
-			log.Error("error fetching host info: ", err)
-			return
+			info, err := hostInfoFetcher.Fetch()
+
+			if err != nil {
+				log.Error("error fetching host info: ", err)
+				return
+			}
+
+			reporter.Send(info)
+
+			time.Sleep(10 * time.Second)
 		}
-
-		reporter.Send(info)
-
 
 	},
 }
@@ -67,4 +72,3 @@ func createReporter() (metrics.MetricsReporter, error) {
 	}
 
 }
-
