@@ -30,6 +30,7 @@ RUN mkdir -p /host/sys
 RUN mkdir -p /host/etc
 RUN mkdir -p /host/var
 
+RUN ln -s /home/warden /usr/bin/warden
 
 WORKDIR /home
 ENTRYPOINT ./warden

@@ -3,6 +3,7 @@ services:
 
   agent:
       image: garugaru/warden
+      entrypoint: warden
       command: agent
       environment:
         REPORTER: statsd

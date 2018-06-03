@@ -3,6 +3,8 @@ services:
 
   warden:
       image: garugaru/warden
+      entrypoint: warden
+      command: agent
       build:
         context: ../
         dockerfile: docker/Dockerfile.dev

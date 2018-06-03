@@ -21,8 +21,8 @@ deps:
 	dep ensure
 
 
-.PHONY: docker_run
-docker_run:
+.PHONY: docker_up
+docker_up:
 	docker-compose -f docker/docker-compose.yml up --build
 
 
