@@ -4,9 +4,8 @@ steps:
   build_test_image:
     type: build
     description: Image build
-    image_name: garugaru/warden
+    image_name: garugaru/warden_dev
     dockerfile: docker/Dockerfile.dev
-    tag: ${{CF_SHORT_REVISION}}
 
  # unit_test:
  #   title: Unit Tests
