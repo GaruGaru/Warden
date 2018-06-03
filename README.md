@@ -1,3 +1,3 @@
 # Warden
 
-## Docker swarm dashboard
+## Lightweight, container native host monitor
