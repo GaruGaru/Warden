@@ -14,3 +14,7 @@ services:
         - "/sys:/host/sys"
         - "/var:/host/var"
         - "/etc:/host/etc"
+
+networks:
+  statsd:
+    external: true
