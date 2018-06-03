@@ -1,0 +1,15 @@
+version: "3"
+services:
+
+  agent:
+      image: garugaru/warden
+      command: agent
+      environment:
+        STATSD_HOST: ${STATSD_HOST}
+      networks:
+        - statsd
+      volumes:
+        - "/proc:/host/proc"
+        - "/sys:/host/sys"
+        - "/var:/host/var"
+        - "/etc:/host/etc"

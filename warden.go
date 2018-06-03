@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"github.com/GaruGaru/Warden/cmd"
+	"log"
 )
 
 func main() {

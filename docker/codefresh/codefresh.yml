@@ -1,0 +1,48 @@
+version: '1.0'
+steps:
+
+  build_test_image:
+    type: build
+    description: Image build
+    image_name: garugaru/warden
+    dockerfile: docker/Dockerfile.dev
+    tag: ${{CF_SHORT_REVISION}}
+
+  unit_test:
+    title: Unit Tests
+    type: composition
+    working_directory: ${{main_clone}}
+    composition_candidates:
+      tao-test:
+        image: '${{build_test_image}}'
+        entrypoint: sh -c "cd /gopath/src/github.com/GaruGaru/Warden && dep ensure && go test ./... -v"
+
+  build_production_image:
+    title: Building Production Image
+    type: build
+    image_name: garugaru/warden
+    working_directory: ${{main_clone}}
+    dockerfile: docker/Dockerfile.prod
+    tag: '${{CF_SHORT_REVISION}}'
+
+  push_image:
+    type: push
+    title: Image push
+    candidate: ${{build_production_image}}
+    tags:
+      -  ${{CF_SHORT_REVISION}}
+      - 'latest'
+    fail_fast: true
+
+  deploy_to_swarm:
+    image: codefresh/remote-docker:latest
+    working_directory: ${{main_clone}}
+    commands:
+      - rdocker ${{RDOCKER_HOST}} docker stack deploy --compose-file docker/codefresh/docker-stack.yml ${{STACK_NAME}}
+      - rdocker ${{RDOCKER_HOST}} docker service update --force --image garugaru/warden:${{CF_SHORT_REVISION}} ${{STACK_NAME}}_agent
+    environment:
+      - SSH_KEY=${{SSH_KEY}}
+    when:
+      branch:
+        only:
+          - master
