@@ -45,6 +45,13 @@ services:
         mode: global
 ```
 
+### Example Dashboard 
+
+Example dashboard using grafana + graphite + warden(statsd)
+
+![Dashboard](https://github.com/GaruGaru/Warden/blob/master/res/dashboard_example.png)
+
+
 ### Supported Metrics
 
 * Host
