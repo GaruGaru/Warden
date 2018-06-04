@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	log "github.com/sirupsen/logrus"
-	"strings"
-	"github.com/GaruGaru/Warden/metrics"
 	"fmt"
 	"github.com/GaruGaru/Warden/agent"
+	"github.com/GaruGaru/Warden/metrics"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	"strings"
 	"time"
 )
 
@@ -42,7 +42,7 @@ var agentCmd = &cobra.Command{
 
 		hostInfoFetcher := agent.DefaultHostInfoFetcher{}
 
-		for ; ; {
+		for {
 
 			info, err := hostInfoFetcher.Fetch()
 

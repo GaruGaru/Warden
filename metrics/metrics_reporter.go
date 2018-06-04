@@ -1,9 +1,9 @@
 package metrics
 
 import (
+	"encoding/json"
 	"github.com/GaruGaru/Warden/agent"
 	"github.com/sirupsen/logrus"
-	"encoding/json"
 )
 
 type MetricsReporter interface {

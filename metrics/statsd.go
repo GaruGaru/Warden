@@ -1,11 +1,11 @@
 package metrics
 
 import (
-	"github.com/cactus/go-statsd-client/statsd"
-	"time"
 	"github.com/GaruGaru/Warden/agent"
-	"strings"
+	"github.com/cactus/go-statsd-client/statsd"
 	"strconv"
+	"strings"
+	"time"
 )
 
 func NewStatsdMetricsReporter(address string, prefix string) (StatsdMetricsReporter, error) {

@@ -1,15 +1,15 @@
 package agent
 
 import (
-	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/cpu"
-	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/disk"
-	"time"
+	"github.com/shirou/gopsutil/host"
+	"github.com/shirou/gopsutil/mem"
 	"io/ioutil"
 	"os"
 	"path"
 	"strings"
+	"time"
 )
 
 type HostInfoFetcher interface {

@@ -41,8 +41,8 @@ type DiskInfo struct {
 }
 
 type AgentInfo struct {
-	Host     HostInfo   `json:"host"`
-	CpusInfo []CpuInfo  `json:"cpus_info"`
-	MemoryInfo          `json:"memory"`
-	Disks    []DiskInfo `json:"disks"`
+	Host       HostInfo  `json:"host"`
+	CpusInfo   []CpuInfo `json:"cpus_info"`
+	MemoryInfo `json:"memory"`
+	Disks      []DiskInfo `json:"disks"`
 }

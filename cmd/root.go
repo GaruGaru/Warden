@@ -12,7 +12,6 @@ var (
 	Version = "0"
 )
 
-
 func init() {
 	viper.AutomaticEnv()
 }

@@ -1,6 +1,6 @@
 # Warden
 
-![Logo](https://github.com/GaruGaru/Warden/blob/master/res/logo.png){:height="50%" width="50%"}
+![Logo](https://github.com/GaruGaru/Warden/blob/master/res/logo.png)
 
 [![Build Status](https://travis-ci.org/GaruGaru/Warden.svg?branch=master)](https://travis-ci.org/GaruGaru/Warden)
 [![Go Report Card](https://goreportcard.com/badge/github.com/GaruGaru/Warden)](https://goreportcard.com/report/github.com/GaruGaru/Warden)
