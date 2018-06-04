@@ -5,6 +5,9 @@ BUILD=$(shell git rev-parse --short HEAD)
 lint:
 	revive -config lint/revive.toml -exclude ./vendor/... -formatter stylish ./...
 
+.PHONY fmt 
+fmt:
+	go fmt ./...
 
 .PHONY: build
 build:
