@@ -15,14 +15,14 @@ Warden is a lightweight host monitor designed to be run inside containers that r
 
 ### Run Agent Locally 
 
-*Just Logging*
+**Just Logging**
 ```bash
-	warden agent
+warden agent
 ```
-*Statsd*
+**Statsd**
 
 ```bash
-	warden agent --reporter=statsd --statsd_host=localhost:8125 
+warden agent --reporter=statsd --statsd_host=localhost:8125 
 ```
 
 ### Run Agent in docker-swarm 
