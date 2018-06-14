@@ -32,8 +32,10 @@ var agentCmd = &cobra.Command{
 	Short: "Start agent for local host monitoring",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		log.WithField("reporter", viper.Get("reporter")).
-			Info("Warden agent started")
+		log.WithFields(log.Fields{
+			"delay":    viper.GetInt("monitor_delay"),
+			"reporter": viper.GetString("reporter"),
+		}).Info("Warden started")
 
 		reporter, err := createReporter()
 
