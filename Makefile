@@ -1,11 +1,12 @@
 DOCKER_IMAGE=garugaru/warden
 BUILD=$(shell git rev-parse --short HEAD)
 
+
 .PHONY: lint
 lint:
 	revive -config lint/revive.toml -exclude ./vendor/... -formatter stylish ./...
 
-.PHONY fmt 
+.PHONY: fmt
 fmt:
 	go fmt ./...
 
@@ -13,16 +14,13 @@ fmt:
 build:
 	go build
 
-
 .PHONY: test
 test:
 	go test -v ./...
 
-
 .PHONY: deps
 deps:
 	dep ensure
-
 
 .PHONY: docker_up
 docker_up:

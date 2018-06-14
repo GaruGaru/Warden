@@ -20,9 +20,11 @@ func init() {
 
 	agentCmd.Flags().String("statsd_host", "localhost:8125", "statsd host:port")
 	agentCmd.Flags().String("statsd_prefix", "warden", "statsd metrix prefix")
+	agentCmd.Flags().Int64("monitor_delay", 10, "monitor run delay in seconds")
 
 	viper.BindPFlags(agentCmd.Flags())
 	rootCmd.AddCommand(agentCmd)
+
 }
 
 var agentCmd = &cobra.Command{
@@ -43,7 +45,6 @@ var agentCmd = &cobra.Command{
 		hostInfoFetcher := agent.DefaultHostInfoFetcher{}
 
 		for {
-
 			info, err := hostInfoFetcher.Fetch()
 
 			if err != nil {
@@ -53,7 +54,8 @@ var agentCmd = &cobra.Command{
 
 			reporter.Send(info)
 
-			time.Sleep(10 * time.Second)
+			delay := viper.GetInt("monitor_delay")
+			time.Sleep(time.Duration(delay) * time.Second)
 		}
 
 	},
