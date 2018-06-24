@@ -25,6 +25,19 @@ warden agent
 warden agent --reporter=statsd --statsd_host=localhost:8125 
 ```
 
+
+### Run Api Server
+
+```bash
+warden api
+```
+
+## Supported Endpoints
+
+* /host
+* /docker
+
+
 ### Run Agent in docker-swarm 
 
 ```yaml
