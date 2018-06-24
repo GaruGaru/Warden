@@ -26,7 +26,7 @@ warden agent --reporter=statsd --statsd_host=localhost:8125
 ```
 
 
-### Run Api Server
+### Run Api Server (For custom integrations)
 
 ```bash
 warden api
